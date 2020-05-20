@@ -15,7 +15,7 @@ import java.sql.ResultSet;
  */
 
 public class Database {
-	// Tietokanta sijaitsee projektin juurikansiossa -> "jdbc:sqlite:db/shoppingList.sqlite"
+	// Tietokanta sijaitsee projektin juurikansiossa -> "jdbc:sqlite:db/Chinook_Sqlite.sqlite"
 	private static final String JDBC_URL = System.getenv("JDBC_DATABASE_URL");
 	
 	public static Connection connect() throws SQLException {
