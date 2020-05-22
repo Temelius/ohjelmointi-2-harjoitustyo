@@ -11,23 +11,34 @@
 </head>
 <body>
 	<h1>🎤 Artists</h1>
+	<form method="POST">
+		<label for="name">Add new artist</label>
+		<input id="name" name="name" type="text">
+		<input type="submit" value="Add artist">
+	</form>
 	<table>
 		<thead>
 			<th>#</th>
 			<th>Artist</th>
+			<th>Action</th>
 		</thead>
 		<tbody>
 			<c:forEach items="${ items }" var="artist">
-				<tr>
+				<tr id="artist-${artist.getArtistId() }">
 					<td>
 						<c:out value="${ artist.getArtistId() }"></c:out>
 					</td>
 					<td>
 						<c:out value="${ artist.getArtistName() }"></c:out>
 					</td>
+					<td>
+						<button onclick="removeProduct(${ artist.getArtistId() })">Remove</button>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	
+	<script src="/scripts/app.js"></script>
 </body>
 </html>
