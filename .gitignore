@@ -1,5 +1,6 @@
 .settings/
 tomcat.8080/
+db/Chinook_Sqlite.sqlite
 
 # Compiled class file
 *.class
