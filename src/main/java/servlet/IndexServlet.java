@@ -29,4 +29,24 @@ public class IndexServlet extends HttpServlet{
         // forward the request to the index.jsp page
         req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
+    
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    	long id = Long.parseLong(req.getParameter("id"));
+    	
+    	Artist artist = dao.getArtist(id);
+    	if (artist != null) dao.removeArtist(artist);
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	String name = req.getParameter("name");
+    	
+    	Artist newArtist = new Artist(name);
+    	
+    	dao.addArtist(newArtist);
+    	
+    	resp.sendRedirect("/");
+    }
+    
 }
