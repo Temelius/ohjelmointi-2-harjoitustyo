@@ -39,7 +39,7 @@
 						</a>
 					</td>
 					<td>
-						<button onclick="removeProduct(${ artist.getArtistId() })">Remove</button>
+						<button onclick="removeArtist(${ artist.getArtistId() })">Remove</button>
 					</td>
 				</tr>
 			</c:forEach>
