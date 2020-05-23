@@ -11,11 +11,18 @@
 </head>
 <body>
 	<h1>🎤 Artists</h1>
-	<form method="POST">
-		<label for="name">Add new artist</label>
-		<input id="name" name="name" type="text">
-		<input type="submit" value="Add artist">
-	</form>
+	<div>
+		<form method="POST" style="float:left;margin-right:25px;">
+			<label for="name">Add new artist</label> 
+			<input id="name" name="name" type="text"> 
+			<input type="submit" value="Add artist">
+		</form>
+		<form method="GET">
+			<label for="search">Search for artist</label>
+			<input id="search" name="search" type="text">
+			<input type="submit" value="Search">
+		</form>
+	</div>
 	<table>
 		<thead>
 			<th>#</th>
@@ -25,11 +32,11 @@
 		<tbody>
 			<c:forEach items="${ items }" var="artist">
 				<tr id="artist-${artist.getArtistId() }">
+					<td><c:out value="${ artist.getArtistId() }"></c:out></td>
 					<td>
-						<c:out value="${ artist.getArtistId() }"></c:out>
-					</td>
-					<td>
-						<c:out value="${ artist.getArtistName() }"></c:out>
+						<a href="/albums?ArtistId=${ artist.getArtistId() }">
+							<c:out value="${ artist.getArtistName() }"></c:out>
+						</a>
 					</td>
 					<td>
 						<button onclick="removeProduct(${ artist.getArtistId() })">Remove</button>
@@ -38,7 +45,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	
+
 	<script src="/scripts/app.js"></script>
 </body>
 </html>
