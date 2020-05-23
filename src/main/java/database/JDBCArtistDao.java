@@ -145,5 +145,40 @@ public class JDBCArtistDao implements ArtistDao {
 		}
 		return false;
 	}
+	
+	@Override
+	public List<Artist> searchArtist(String keyword) {
+		
+		String query = "SELECT ArtistId, Name FROM Artist WHERE Name LIKE ? ORDER BY Name ASC";
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+		
+		List<Artist> items = new ArrayList<Artist>();
+		
+		try {
+			
+			conn = Database.connect();
+			stmt = conn.prepareStatement(query);
+			
+			stmt.setString(1, "%" + keyword + "%");
+			results = stmt.executeQuery();
+			
+			while(results.next()) {
+				long artistId = results.getLong("ArtistId");
+				String artistName = results.getString("Name");
+				Artist newArtist = new Artist(artistId, artistName);
+				items.add(newArtist);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Database.close(conn, stmt, results);
+		}
+		
+		return items;
+	}
 
 }
