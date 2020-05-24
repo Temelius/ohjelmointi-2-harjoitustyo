@@ -5,8 +5,9 @@ public class Album {
 	private String  albumTitle;
 	private long artistId;
 	
-	public Album(String title) {
+	public Album(String title, long artist) {
 		this.albumTitle = title;
+		this.artistId = artist;
 	}
 	
 	public Album(long id, String title, long artist) {
