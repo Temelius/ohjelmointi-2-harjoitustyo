@@ -121,6 +121,31 @@ public class JDBCAlbumDao implements AlbumDao {
 		}
 		return false;
 	}
+	
+	public boolean removeAllArtistAlbums(long artistId) {
+		
+		String query = "DELETE FROM Album WHERE ArtistId = ?";
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet results = null;
+
+		try {
+
+			conn = Database.connect();
+			stmt = conn.prepareStatement(query);
+
+			stmt.setLong(1, artistId);
+			if (stmt.executeUpdate() > 0) return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			Database.close(conn, stmt, results);
+		}
+		
+		return false;
+	}
 
 	@Override
 	public List<Album> searchAlbum(String keyword) {

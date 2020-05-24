@@ -9,18 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import database.JDBCArtistDao;
 import database.ArtistDao;
+import database.JDBCArtistDao;
+import database.AlbumDao;
+import database.JDBCAlbumDao;
 import model.Artist;
 
 @WebServlet("/artists")
 public class ArtistServlet extends HttpServlet{
 	
-	private ArtistDao dao = new JDBCArtistDao();
+	private ArtistDao artistDao = new JDBCArtistDao();
+	private AlbumDao albumDao = new JDBCAlbumDao();
 	
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Artist> artists = dao.getAllItems();
+        List<Artist> artists = artistDao.getAllItems();
 
         // pass the time string to the JSP page as an attribute
         req.setAttribute("items", artists);
@@ -33,8 +36,12 @@ public class ArtistServlet extends HttpServlet{
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     	long id = Long.parseLong(req.getParameter("id"));
     	
-    	Artist artist = dao.getArtist(id);
-    	if (artist != null) dao.removeArtist(artist);
+    	Artist artist = artistDao.getArtist(id);
+    	// Jos artisti on olemassa, poistetaan Artisti ja kaikki sen Artistin albumit.
+    	if (artist != null) {
+    		artistDao.removeArtist(artist);
+    		albumDao.removeAllArtistAlbums(artist.getArtistId());
+    	}
     }
     
     @Override
@@ -43,7 +50,7 @@ public class ArtistServlet extends HttpServlet{
     	
     	Artist newArtist = new Artist(name);
     	
-    	dao.addArtist(newArtist);
+    	artistDao.addArtist(newArtist);
     	
     	resp.sendRedirect("/artists");
     }
