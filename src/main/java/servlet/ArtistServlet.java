@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.time.LocalTime;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,8 +13,8 @@ import database.JDBCArtistDao;
 import database.ArtistDao;
 import model.Artist;
 
-@WebServlet("")
-public class IndexServlet extends HttpServlet{
+@WebServlet("/artists")
+public class ArtistServlet extends HttpServlet{
 	
 	private ArtistDao dao = new JDBCArtistDao();
 	
