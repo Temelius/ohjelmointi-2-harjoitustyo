@@ -134,7 +134,7 @@ public class JDBCArtistDao implements ArtistDao {
 			stmt = conn.prepareStatement(query);
     		
         	for (Artist listItem : items) {
-    			if (artist.getArtistName().equalsIgnoreCase(listItem.getArtistName())) {
+    			if (artist.getArtistId() == listItem.getArtistId()) {
     				
     				stmt.setLong(1, listItem.getArtistId());
     				
