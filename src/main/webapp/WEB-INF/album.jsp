@@ -14,6 +14,7 @@
 	<div>
 		<form method="POST" style="float:left;margin-right:25px;">
 			<label for="name">Add new album</label> 
+			<input type="hidden" name="artistId" value='<c:out value="${ artistId }"></c:out>'>
 			<input id="name" name="name" type="text"> 
 			<input type="submit" value="Add album">
 		</form>
