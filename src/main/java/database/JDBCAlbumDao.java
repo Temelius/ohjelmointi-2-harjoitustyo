@@ -96,9 +96,9 @@ public class JDBCAlbumDao implements AlbumDao {
 
 		return false;
 	}
-
+	
 	@Override
-	public boolean removeAlbum(Album album) {
+	public boolean removeAlbum(long id) {
 
 		String query = "DELETE FROM Album WHERE AlbumId = ?";
 
@@ -106,23 +106,13 @@ public class JDBCAlbumDao implements AlbumDao {
 		PreparedStatement stmt = null;
 		ResultSet results = null;
 
-		List<Album> items = getAllItemsByArtist(album.getArtistId());
-
 		try {
 
 			conn = Database.connect();
 			stmt = conn.prepareStatement(query);
 
-			for (Album listItem : items) {
-				if (album.getAlbumTitle().equalsIgnoreCase(listItem.getAlbumTitle())) {
-
-					stmt.setLong(1, listItem.getAlbumId());
-
-					if (stmt.executeUpdate() > 0)
-						return true;
-
-				}
-			}
+			stmt.setLong(1, id);
+			if (stmt.executeUpdate() > 0) return true;
 
 		} catch (Exception e) {
 			e.printStackTrace();

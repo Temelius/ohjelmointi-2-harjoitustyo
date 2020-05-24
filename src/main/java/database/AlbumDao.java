@@ -9,7 +9,7 @@ public interface AlbumDao {
 
     public boolean addAlbum(Album newAlbum);
 
-    public boolean removeAlbum(Album album);
+    public boolean removeAlbum(long id);
     
     public List<Album> searchAlbum(String keyword);
 }

@@ -10,11 +10,15 @@
 	href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
 </head>
 <body>
-	<h1>💿 Albums</h1>
+	<div>
+		<a href="/artists">All artists</a>
+	</div>
+	<h1>🎤 <c:out value="${ artist.getArtistName() }"></c:out></h1>
+	<h2>💿 Albums</h2>
 	<div>
 		<form method="POST" style="float:left;margin-right:25px;">
 			<label for="name">Add new album</label> 
-			<input type="hidden" name="artistId" value='<c:out value="${ artistId }"></c:out>'>
+			<input type="hidden" name="artistId" value='<c:out value="${ artist.getArtistId() }"></c:out>'>
 			<input id="name" name="name" type="text"> 
 			<input type="submit" value="Add album">
 		</form>
