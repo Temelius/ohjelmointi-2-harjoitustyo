@@ -146,7 +146,8 @@ public class JDBCAlbumDao implements AlbumDao {
 		
 		return false;
 	}
-
+	
+	// tätä metodia en ehtinyt implementtaamaan
 	@Override
 	public List<Album> searchAlbum(String keyword) {
 

@@ -17,9 +17,9 @@
 			<input id="name" name="name" type="text"> 
 			<input type="submit" value="Add artist">
 		</form>
-		<form method="GET">
+		<form method="GET" action="/artists/search">
 			<label for="search">Search for artist</label>
-			<input id="search" name="search" type="text">
+			<input id="search" name="q" type="text">
 			<input type="submit" value="Search">
 		</form>
 	</div>
