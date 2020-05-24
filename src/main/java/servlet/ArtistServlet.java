@@ -45,7 +45,7 @@ public class ArtistServlet extends HttpServlet{
     	
     	dao.addArtist(newArtist);
     	
-    	resp.sendRedirect("/");
+    	resp.sendRedirect("/artists");
     }
     
 }
