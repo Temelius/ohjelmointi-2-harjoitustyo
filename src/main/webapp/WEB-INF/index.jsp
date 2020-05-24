@@ -27,6 +27,7 @@
 		<thead>
 			<th>#</th>
 			<th>Artist</th>
+			<th>Albums</th>
 			<th>Action</th>
 		</thead>
 		<tbody>
@@ -38,6 +39,7 @@
 							<c:out value="${ artist.getArtistName() }"></c:out>
 						</a>
 					</td>
+					<td><c:out value="${ artist.getAlbumCount() }"></c:out></td>
 					<td>
 						<button onclick="removeArtist(${ artist.getArtistId() })">Remove</button>
 					</td>

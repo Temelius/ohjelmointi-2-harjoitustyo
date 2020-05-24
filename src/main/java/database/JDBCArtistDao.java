@@ -20,7 +20,11 @@ public class JDBCArtistDao implements ArtistDao {
 	@Override
 	public List<Artist> getAllItems() {
 		// SQL query string
-		String query = "SELECT ArtistId, Name FROM Artist ORDER BY Name ASC";
+		String query = "SELECT Artist.ArtistId, Name, COUNT(AlbumId) AS AlbumCount" 
+					 + " FROM Artist"
+					 + " LEFT JOIN Album ON Album.ArtistId = Artist.ArtistId"
+					 + " GROUP BY Artist.ArtistId"
+					 + " ORDER BY Name ASC";
 		
 		// Connection
 		Connection conn = null;
@@ -38,7 +42,8 @@ public class JDBCArtistDao implements ArtistDao {
 			while(results.next()) {
 				long artistId = results.getLong("ArtistId");
 				String artistName = results.getString("Name");
-				Artist newArtist = new Artist(artistId, artistName);
+				int albumCount = results.getInt("AlbumCount");
+				Artist newArtist = new Artist(artistId, artistName, albumCount);
 				items.add(newArtist);
 			}
 			
@@ -57,7 +62,7 @@ public class JDBCArtistDao implements ArtistDao {
     	
     	for (Artist item : items) {
 			if (item.getArtistId() == id) {
-				return new Artist(item.getArtistId(), item.getArtistName());
+				return new Artist(item.getArtistId(), item.getArtistName(), item.getAlbumCount());
 			}
 		}
     	
