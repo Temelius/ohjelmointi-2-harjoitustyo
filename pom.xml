@@ -9,7 +9,7 @@
   
   <properties>
 		<!-- Tomcatin versionumero -->
-		<tomcat.version>9.0.31</tomcat.version>
+		<tomcat.version>9.0.41</tomcat.version>
 		
 		<!-- SQLite versio -->
 		<sqlite.driver.version>3.30.1</sqlite.driver.version>
